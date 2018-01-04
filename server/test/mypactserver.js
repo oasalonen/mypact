@@ -24,8 +24,10 @@ describe('mypactserver', () => {
             providerBaseUrl: `http://localhost:${PORT}`,
             providerStatesSetupUrl: `http://localhost:${PORT}/setup`,
             provider: 'MyPactServer',
-            pactUrls: [path.resolve(process.cwd() + '/../client/pacts/mypactclient-mypactserver.json')],
-            providerVersion: "1.0.0"
+            //pactUrls: [path.resolve(process.cwd() + '/../client/pacts/mypactclient-mypactserver.json')],
+            pactBrokerUrl: 'http://localhost:2340',
+            providerVersion: '1.0.0',
+            publishVerificationResult: true
         };
         
         return pact.Verifier.verifyProvider(opts)
