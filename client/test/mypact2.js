@@ -1,17 +1,16 @@
 const chai = require('chai');
 const pact = require('pact');
-const client = require('../client');
+const client = require('../client2');
 const {term} = pact.Matchers;
 
 const expect = chai.expect;
 
-describe('mypact', () => {
+describe('mypact2', () => {
     const provider = pact({
-        consumer: 'MyPactClient',
+        consumer: 'MyPactClient2',
         provider: 'MyPactServer',
-        port: 2341,
-        logLevel: 'WARN',
-        spec: 1
+        port: 2342,
+        logLevel: 'WARN'
     });
 
     describe('when all is well', () => {
@@ -29,10 +28,7 @@ describe('mypact', () => {
                         willRespondWith: {
                             status: 200,
                             headers: { 
-                                'Content-Type': term({
-                                    matcher: '^application/json',
-                                    generate: 'application/json'
-                                }) 
+                                'Content-Type': 'application/json; charset=utf-8'
                             },
                             body: { pong: true }
                         }

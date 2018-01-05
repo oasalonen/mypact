@@ -3,13 +3,25 @@ const path = require('path');
 const pact = require('pact');
 const app = require('../server.js');
 
-const PORT = 2342;
+const PORT = 2349;
 
 describe('mypactserver', () => {
     before((done) => {
         const server = app.start();
-
+        
         server.post('/setup', (req, res) => {
+            console.log(req.body);
+
+            switch (req.body.state) {
+                case 'all is well':
+                    server.hasPongs = true;
+                    break;
+                case 'server is out of pongs':
+                    console.log('Setting pongs to false');
+                    server.hasPongs = false;
+                break;
+            }
+
             res.end();
         });
 

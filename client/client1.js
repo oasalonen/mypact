@@ -11,5 +11,5 @@ function ping() {
 }
 
 module.exports = {
-    ping: ping
+    ping
 };
